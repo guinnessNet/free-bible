@@ -1,0 +1,32 @@
+[
+  {
+    "id": "KRV2",
+    "name": "개역개정",
+    "language": "ko",
+    "direction": "ltr"
+  },
+  {
+    "id": "KRV",
+    "name": "개역한글",
+    "language": "ko",
+    "direction": "ltr"
+  },
+  {
+    "id": "MBS",
+    "name": "현대인의성경",
+    "language": "ko",
+    "direction": "ltr"
+  },
+  {
+    "id": "EASY",
+    "name": "쉬운성경",
+    "language": "ko",
+    "direction": "ltr"
+  },
+  {
+    "id": "NIV",
+    "name": "New International Version",
+    "language": "en",
+    "direction": "ltr"
+  }
+]
