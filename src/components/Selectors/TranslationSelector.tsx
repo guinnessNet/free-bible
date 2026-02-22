@@ -21,7 +21,7 @@ export default function TranslationSelector({ onClose }: Props) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 flex flex-col" onClick={onClose}>
+    <div className="fixed inset-0 z-60 bg-black/60 flex flex-col" onClick={onClose}>
       <div
         className="bg-white dark:bg-gray-800 mt-auto rounded-t-2xl flex flex-col"
         style={{ maxHeight: '70vh' }}

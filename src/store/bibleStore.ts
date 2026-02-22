@@ -54,7 +54,7 @@ export const useBibleStore = create<BibleStore>()(
       darkMode: false,
       favoriteTranslations: [],
       fontSize: 'base',
-      ttsRate: 1.0,
+      ttsRate: 0.5,
 
       init: async () => {
         const { translationId, bookId, chapterIndex } = get();

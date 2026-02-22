@@ -4,15 +4,17 @@ import type { Translation, TranslationMeta, BookData } from '../types/bible';
 const bookCache = new Map<string, BookData>();
 const metaCache = new Map<string, TranslationMeta>();
 
+const base = import.meta.env.BASE_URL; // vite.config.ts의 base 값 (예: '/free-bible/')
+
 export async function loadTranslations(): Promise<Translation[]> {
-  const res = await fetch('/bibles/translations.json');
+  const res = await fetch(`${base}bibles/translations.json`);
   if (!res.ok) throw new Error('translations.json 로드 실패');
   return res.json();
 }
 
 export async function loadTranslationMeta(translationId: string): Promise<TranslationMeta> {
   if (metaCache.has(translationId)) return metaCache.get(translationId)!;
-  const res = await fetch(`/bibles/${translationId}/metadata.json`);
+  const res = await fetch(`${base}bibles/${translationId}/metadata.json`);
   if (!res.ok) throw new Error(`${translationId} metadata 로드 실패`);
   const data: TranslationMeta = await res.json();
   metaCache.set(translationId, data);
@@ -22,7 +24,7 @@ export async function loadTranslationMeta(translationId: string): Promise<Transl
 export async function loadBook(translationId: string, bookId: string): Promise<BookData> {
   const key = `${translationId}/${bookId}`;
   if (bookCache.has(key)) return bookCache.get(key)!;
-  const res = await fetch(`/bibles/${translationId}/${bookId}.json`);
+  const res = await fetch(`${base}bibles/${translationId}/${bookId}.json`);
   if (!res.ok) throw new Error(`${key} 로드 실패`);
   const data: BookData = await res.json();
   bookCache.set(key, data);

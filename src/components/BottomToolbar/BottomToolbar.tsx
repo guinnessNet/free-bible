@@ -10,7 +10,10 @@ interface TTS {
   stop: () => void;
 }
 
-interface Props { tts: TTS; }
+interface Props {
+  tts: TTS;
+  onNavigate: () => void;
+}
 
 const COLORS: { key: HighlightColor; cls: string }[] = [
   { key: 'yellow', cls: 'bg-yellow-300' },
@@ -19,7 +22,7 @@ const COLORS: { key: HighlightColor; cls: string }[] = [
   { key: 'blue',   cls: 'bg-blue-300' },
 ];
 
-export default function BottomToolbar({ tts }: Props) {
+export default function BottomToolbar({ tts, onNavigate }: Props) {
   const {
     translationId, bookId, chapterIndex,
     selectedVerses, clearSelection,
@@ -72,7 +75,7 @@ export default function BottomToolbar({ tts }: Props) {
       <div className="fixed bottom-0 left-0 right-0 z-50 h-16 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 flex items-center px-2">
         {/* 이전 장 */}
         <button
-          onClick={() => { tts.stop(); goPrevChapter(); }}
+          onClick={() => { tts.stop(); onNavigate(); goPrevChapter(); }}
           className="flex-1 flex flex-col items-center py-1 text-gray-500 dark:text-gray-400"
         >
           <span className="text-xl">◀</span>
@@ -120,7 +123,7 @@ export default function BottomToolbar({ tts }: Props) {
 
         {/* 다음 장 */}
         <button
-          onClick={() => { tts.stop(); goNextChapter(); }}
+          onClick={() => { tts.stop(); onNavigate(); goNextChapter(); }}
           className="flex-1 flex flex-col items-center py-1 text-gray-500 dark:text-gray-400"
         >
           <span className="text-xl">▶</span>

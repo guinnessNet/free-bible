@@ -13,11 +13,11 @@ const FONT_OPTIONS: { value: 'sm' | 'base' | 'lg' | 'xl'; label: string }[] = [
 ];
 
 const TTS_RATES: { value: number; label: string }[] = [
-  { value: 0.75, label: '0.75×' },
-  { value: 1.0,  label: '1.0×' },
-  { value: 1.25, label: '1.25×' },
-  { value: 1.5,  label: '1.5×' },
-  { value: 2.0,  label: '2.0×' },
+  { value: 0.5,  label: '아주\n느리게' },
+  { value: 0.75, label: '느리게' },
+  { value: 1.0,  label: '보통' },
+  { value: 1.25, label: '빠르게' },
+  { value: 1.5,  label: '아주\n빠르게' },
 ];
 
 export default function SettingsPanel({ onClose, onOpenSaved }: Props) {
@@ -36,7 +36,7 @@ export default function SettingsPanel({ onClose, onOpenSaved }: Props) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 flex flex-col" onClick={onClose}>
+    <div className="fixed inset-0 z-60 bg-black/60 flex flex-col" onClick={onClose}>
       <div
         className="bg-white dark:bg-gray-800 mt-auto rounded-t-2xl flex flex-col"
         style={{ maxHeight: '85vh' }}
@@ -76,7 +76,7 @@ export default function SettingsPanel({ onClose, onOpenSaved }: Props) {
               <button
                 onClick={toggleDarkMode}
                 className={[
-                  'relative w-12 h-6 rounded-full transition-colors duration-200',
+                  'relative w-12 h-6 shrink-0 rounded-full transition-colors duration-200',
                   darkMode ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-500',
                 ].join(' ')}
                 role="switch"
@@ -84,8 +84,8 @@ export default function SettingsPanel({ onClose, onOpenSaved }: Props) {
               >
                 <span
                   className={[
-                    'absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-200',
-                    darkMode ? 'translate-x-6' : 'translate-x-0.5',
+                    'absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-200',
+                    darkMode ? 'translate-x-[22px]' : 'translate-x-0',
                   ].join(' ')}
                 />
               </button>
@@ -126,7 +126,7 @@ export default function SettingsPanel({ onClose, onOpenSaved }: Props) {
                   key={value}
                   onClick={() => setTtsRate(value)}
                   className={[
-                    'flex-1 py-2 rounded-xl text-xs font-medium border transition-colors',
+                    'flex-1 py-2 rounded-xl text-xs font-medium border transition-colors whitespace-pre-line leading-tight',
                     ttsRate === value
                       ? 'bg-blue-600 text-white border-blue-600'
                       : 'bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-600',

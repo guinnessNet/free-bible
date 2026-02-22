@@ -20,7 +20,7 @@ export default function NoteEditor({ onClose }: Props) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 flex items-end" onClick={onClose}>
+    <div className="fixed inset-0 z-60 bg-black/50 flex items-end" onClick={onClose}>
       <div
         className="bg-white dark:bg-gray-800 w-full rounded-t-2xl p-4"
         onClick={(e) => e.stopPropagation()}

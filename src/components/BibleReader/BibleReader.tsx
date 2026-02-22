@@ -6,6 +6,10 @@ import VerseList from './VerseList';
 import BottomToolbar from '../BottomToolbar/BottomToolbar';
 import type { Chapter } from '../../types/bible';
 
+const pageAudio = new Audio(`${import.meta.env.BASE_URL}bookSound.mp3`);
+pageAudio.volume = 0.6;
+const playPageSound = () => { pageAudio.currentTime = 0; pageAudio.play().catch(() => {}); };
+
 export default function BibleReader() {
   const {
     currentChapter, isLoading,
@@ -42,8 +46,8 @@ export default function BibleReader() {
   const tts = useTTS(verses, lang, ttsRate);
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => { tts.stop(); goNextChapter(); },
-    onSwipedRight: () => { tts.stop(); goPrevChapter(); },
+    onSwipedLeft: () => { tts.stop(); playPageSound(); goNextChapter(); },
+    onSwipedRight: () => { tts.stop(); playPageSound(); goPrevChapter(); },
     swipeDuration: 500,
     preventScrollOnSwipe: false,
     delta: 50,
@@ -81,7 +85,7 @@ export default function BibleReader() {
         )}
       </div>
 
-      <BottomToolbar tts={tts} />
+      <BottomToolbar tts={tts} onNavigate={playPageSound} />
     </>
   );
 }
