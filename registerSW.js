@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/free-bible/sw.js', { scope: '/free-bible/' })})}
