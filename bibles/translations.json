@@ -28,5 +28,11 @@
     "name": "New International Version",
     "language": "en",
     "direction": "ltr"
+  },
+  {
+    "id": "LEB",
+    "name": "Lexham English Bible",
+    "language": "en",
+    "direction": "ltr"
   }
 ]
