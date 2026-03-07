@@ -28,6 +28,14 @@ export default defineConfig({
         // 성경 JSON 파일 캐싱 (런타임 캐시)
         runtimeCaching: [
           {
+            urlPattern: /\/bibles\/translations\.json$/,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'bible-meta',
+              expiration: { maxEntries: 5, maxAgeSeconds: 60 * 60 * 24 },
+            },
+          },
+          {
             urlPattern: /\/bibles\/.+\.json$/,
             handler: 'CacheFirst',
             options: {

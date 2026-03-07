@@ -204,6 +204,30 @@ export default function SettingsPanel({ onClose, onOpenSaved }: Props) {
 
           <div className="border-t border-gray-100 dark:border-gray-700 mx-4" />
 
+          {/* 캐시 초기화 */}
+          <section className="px-4 pt-4 pb-3">
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">데이터</h3>
+            <button
+              onClick={async () => {
+                if (!confirm('캐시를 초기화하고 새로고침합니다. 계속할까요?')) return;
+                const cacheNames = await caches.keys();
+                await Promise.all(cacheNames.map((name) => caches.delete(name)));
+                const regs = await navigator.serviceWorker?.getRegistrations();
+                if (regs) await Promise.all(regs.map((r) => r.unregister()));
+                window.location.reload();
+              }}
+              className="w-full flex items-center justify-between px-4 py-3.5 bg-gray-50 dark:bg-gray-700 rounded-xl"
+            >
+              <div className="text-left">
+                <p className="text-sm font-medium text-gray-800 dark:text-gray-200">캐시 초기화</p>
+                <p className="text-xs text-gray-400 mt-0.5">새 번역본이 안 보일 때 사용하세요</p>
+              </div>
+              <span className="text-gray-400">›</span>
+            </button>
+          </section>
+
+          <div className="border-t border-gray-100 dark:border-gray-700 mx-4" />
+
           {/* 즐겨찾기 번역본 */}
           <section className="px-4 pt-4">
             <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">즐겨찾기 번역본</h3>
