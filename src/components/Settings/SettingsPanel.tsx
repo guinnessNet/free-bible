@@ -224,6 +224,20 @@ export default function SettingsPanel({ onClose, onOpenSaved }: Props) {
               </div>
               <span className="text-gray-400">›</span>
             </button>
+            <button
+              onClick={async () => {
+                if (!confirm('북마크, 형광펜, 메모, 읽기 기록이 모두 삭제됩니다. 계속할까요?')) return;
+                await db.delete();
+                window.location.reload();
+              }}
+              className="w-full flex items-center justify-between px-4 py-3.5 bg-gray-50 dark:bg-gray-700 rounded-xl mt-2"
+            >
+              <div className="text-left">
+                <p className="text-sm font-medium text-red-500">DB 초기화</p>
+                <p className="text-xs text-gray-400 mt-0.5">형광펜/북마크 오류 시 사용 (데이터 삭제됨)</p>
+              </div>
+              <span className="text-gray-400">›</span>
+            </button>
           </section>
 
           <div className="border-t border-gray-100 dark:border-gray-700 mx-4" />
