@@ -3,7 +3,7 @@ import { useBibleStore } from '../../store/bibleStore';
 import BookSelector from '../Selectors/BookSelector';
 import TranslationSelector from '../Selectors/TranslationSelector';
 import SettingsPanel from '../Settings/SettingsPanel';
-import BookmarkList from '../BookmarkList/BookmarkList';
+import HighlightList from '../HighlightList/HighlightList';
 import SearchModal from '../Search/SearchModal';
 
 export default function Header() {
@@ -69,7 +69,7 @@ export default function Header() {
           onOpenSaved={() => setShowSaved(true)}
         />
       )}
-      {showSaved      && <BookmarkList onClose={() => setShowSaved(false)} />}
+      {showSaved      && <HighlightList onClose={() => setShowSaved(false)} />}
       {showSearch     && <SearchModal onClose={() => setShowSearch(false)} />}
     </>
   );

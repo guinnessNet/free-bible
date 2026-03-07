@@ -14,16 +14,21 @@ export function useHighlights(translationId: string, bookId: string, chapter: nu
 
   const highlightMap = new Map(highlights?.map((h) => [h.verse, h.color]) ?? []);
 
-  const apply = async (verses: number[], color: HighlightColor) => {
+  const apply = async (verses: number[], color: HighlightColor, verseTexts?: Map<number, string>) => {
     for (const verse of verses) {
+      const text = verseTexts?.get(verse) ?? '';
       const existing = await db.highlights
         .where('[translationId+bookId+chapter+verse]')
         .equals([translationId, bookId, chapter, verse])
         .first();
       if (existing?.id != null) {
-        await db.highlights.update(existing.id, { color });
+        await db.highlights.update(existing.id, { color, text, createdAt: new Date() });
       } else {
-        await db.highlights.add({ translationId, bookId, chapter, verse, color });
+        await db.highlights.add({
+          translationId, bookId, chapter, verse, color,
+          createdAt: new Date(),
+          text,
+        });
       }
     }
   };

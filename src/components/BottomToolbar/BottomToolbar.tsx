@@ -1,6 +1,5 @@
 import { useState, useCallback } from 'react';
 import { useBibleStore } from '../../store/bibleStore';
-import { useBookmarks } from '../../hooks/useBookmarks';
 import { useHighlights, type HighlightColor } from '../../hooks/useHighlights';
 import NoteEditor from '../Notes/NoteEditor';
 import type { Verse } from '../../types/bible';
@@ -33,7 +32,6 @@ export default function BottomToolbar({ tts, onNavigate, verses }: Props) {
   } = useBibleStore();
   const chapter = chapterIndex + 1;
 
-  const { toggle: toggleBookmark } = useBookmarks(translationId, bookId, chapter);
   const { apply: applyHighlight } = useHighlights(translationId, bookId, chapter);
 
   const [showColors, setShowColors] = useState(false);
@@ -41,15 +39,14 @@ export default function BottomToolbar({ tts, onNavigate, verses }: Props) {
 
   const hasSelection = selectedVerses.length > 0;
 
-  const handleBookmark = async () => {
-    if (!hasSelection) return;
-    for (const v of selectedVerses) await toggleBookmark(v);
-    clearSelection();
-  };
-
   const handleHighlight = (color: HighlightColor) => async () => {
     if (!hasSelection) return;
-    await applyHighlight(selectedVerses, color);
+    const verseTexts = new Map(
+      verses
+        .filter((v) => selectedVerses.includes(v.verse))
+        .map((v) => [v.verse, v.text])
+    );
+    await applyHighlight(selectedVerses, color, verseTexts);
     setShowColors(false);
     clearSelection();
   };
@@ -120,16 +117,6 @@ export default function BottomToolbar({ tts, onNavigate, verses }: Props) {
         >
           <span className="text-xl">{tts.isPlaying ? '⏸' : '▶'}</span>
           <span className="text-[10px]">듣기</span>
-        </button>
-
-        {/* 북마크 */}
-        <button
-          onClick={handleBookmark}
-          disabled={!hasSelection}
-          className={`flex-1 flex flex-col items-center py-1 ${hasSelection ? 'text-blue-600' : 'text-gray-300'}`}
-        >
-          <span className="text-xl">🔖</span>
-          <span className="text-[10px]">북마크</span>
         </button>
 
         {/* 형광펜 */}

@@ -65,7 +65,7 @@ export default function SettingsPanel({ onClose, onOpenSaved }: Props) {
               onClick={() => { onClose(); onOpenSaved(); }}
               className="w-full flex items-center justify-between px-4 py-3.5 bg-gray-50 dark:bg-gray-700 rounded-xl"
             >
-              <span className="text-sm font-medium text-gray-800 dark:text-gray-200">🔖 북마크 / 형광펜 보기</span>
+              <span className="text-sm font-medium text-gray-800 dark:text-gray-200">🖊 형광펜 보기</span>
               <span className="text-gray-400">›</span>
             </button>
           </section>

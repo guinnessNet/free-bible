@@ -16,6 +16,8 @@ export interface Highlight {
   chapter: number;
   verse: number;
   color: 'yellow' | 'green' | 'pink' | 'blue';
+  createdAt: Date;
+  text: string;
 }
 
 export interface Note {
@@ -40,7 +42,6 @@ class BibleDB extends Dexie {
   bookmarks!: Table<Bookmark>;
   highlights!: Table<Highlight>;
   notes!: Table<Note>;
-
   readingRecords!: Table<ReadingRecord>;
 
   constructor() {
@@ -67,6 +68,40 @@ class BibleDB extends Dexie {
       highlights:     '++id, [translationId+bookId+chapter], [translationId+bookId+chapter+verse]',
       notes:          '++id, [translationId+bookId+chapter], [translationId+bookId+chapter+verse]',
       readingRecords: '++id, [translationId+bookId+chapter], translationId',
+    });
+
+    // v4: 북마크 제거, highlights에 createdAt/text/bookId 인덱스 추가
+    this.version(4).stores({
+      bookmarks:      null, // 테이블 삭제
+      highlights:     '++id, [translationId+bookId+chapter], [translationId+bookId+chapter+verse], createdAt, bookId',
+      notes:          '++id, [translationId+bookId+chapter], [translationId+bookId+chapter+verse]',
+      readingRecords: '++id, [translationId+bookId+chapter], translationId',
+    }).upgrade(async (tx) => {
+      // 기존 북마크를 노란색 형광펜으로 마이그레이션
+      const bookmarks = await tx.table('bookmarks').toArray();
+      const highlights = tx.table('highlights');
+      for (const bm of bookmarks) {
+        const exists = await highlights
+          .where('[translationId+bookId+chapter+verse]')
+          .equals([bm.translationId, bm.bookId, bm.chapter, bm.verse])
+          .first();
+        if (!exists) {
+          await highlights.add({
+            translationId: bm.translationId,
+            bookId: bm.bookId,
+            chapter: bm.chapter,
+            verse: bm.verse,
+            color: 'yellow',
+            createdAt: bm.createdAt ?? new Date(0),
+            text: '',
+          });
+        }
+      }
+      // 기존 형광펜에 createdAt/text 기본값 채우기
+      await highlights.toCollection().modify((hl: Highlight) => {
+        if (!hl.createdAt) hl.createdAt = new Date(0);
+        if (!hl.text) hl.text = '';
+      });
     });
   }
 }

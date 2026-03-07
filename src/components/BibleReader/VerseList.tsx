@@ -2,7 +2,6 @@ import { useRef, useState, useEffect, useCallback } from 'react';
 import type { Verse } from '../../types/bible';
 import { useBibleStore } from '../../store/bibleStore';
 import { useHighlights } from '../../hooks/useHighlights';
-import { useBookmarks } from '../../hooks/useBookmarks';
 import { useNotes } from '../../hooks/useNotes';
 import { loadBook } from '../../services/bibleLoader';
 
@@ -26,7 +25,6 @@ export default function VerseList({ verses, activeVerse }: Props) {
   const chapter = chapterIndex + 1;
 
   const { highlightMap } = useHighlights(translationId, bookId, chapter);
-  const { bookmarkedVerses } = useBookmarks(translationId, bookId, chapter);
   const { noteMap } = useNotes(translationId, bookId, chapter);
 
   const activeRef = useRef<HTMLParagraphElement | null>(null);
@@ -105,7 +103,6 @@ export default function VerseList({ verses, activeVerse }: Props) {
         const isSelected = selectedVerses.includes(v.verse);
         const hlColor = highlightMap.get(v.verse);
         const isActive = activeVerse === v.verse;
-        const isBookmarked = bookmarkedVerses.has(v.verse);
         const note = noteMap.get(v.verse);
         const isToggled = toggledVerses.has(v.verse);
         const compareText = compareVerses.get(v.verse);
@@ -125,7 +122,7 @@ export default function VerseList({ verses, activeVerse }: Props) {
             ].join(' ')}
           >
             <sup className="text-[0.65rem] text-gray-400 mr-1 font-semibold">
-              {isBookmarked ? '🔖' : ''}{v.verse}
+              {v.verse}
             </sup>
             {isToggled ? (
               compareLoading ? (
