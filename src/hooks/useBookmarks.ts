@@ -3,7 +3,10 @@ import { db } from '../services/db';
 
 export function useBookmarks(translationId: string, bookId: string, chapter: number) {
   const bookmarks = useLiveQuery(
-    () => db.bookmarks.where({ translationId, bookId, chapter }).toArray(),
+    () => db.bookmarks
+      .where('[translationId+bookId+chapter]')
+      .equals([translationId, bookId, chapter])
+      .toArray(),
     [translationId, bookId, chapter]
   );
 
@@ -11,7 +14,8 @@ export function useBookmarks(translationId: string, bookId: string, chapter: num
 
   const toggle = async (verse: number) => {
     const existing = await db.bookmarks
-      .where({ translationId, bookId, chapter, verse })
+      .where('[translationId+bookId+chapter+verse]')
+      .equals([translationId, bookId, chapter, verse])
       .first();
     if (existing?.id != null) {
       await db.bookmarks.delete(existing.id);

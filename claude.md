@@ -1,6 +1,19 @@
-# CLAUDE.md — AI 개발 가이드
+# CLAUDE.md
 
-이 문서는 Claude(AI 어시스턴트)가 이 프로젝트를 이해하고 올바르게 기여하기 위한 참조 문서입니다.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+---
+
+## 개발 명령어
+
+```bash
+npm install          # 의존성 설치
+npm run dev          # 개발 서버 (Vite)
+npm run build        # tsc -b && vite build (타입체크 + 빌드)
+npm run lint         # ESLint (eslint .)
+npm run preview      # 빌드 결과물 로컬 미리보기
+npm run deploy       # gh-pages -d dist (GitHub Pages 배포)
+```
 
 ---
 
@@ -217,21 +230,9 @@ interface Note {
 
 ---
 
-## 새 번역본 추가 절차
+## 주의사항
 
-1. `public/bibles/{NEW_ID}/` 폴더 생성
-2. `metadata.json` 작성 (위 형식 참조)
-3. 66권 각각의 `{BOOK_ID}.json` 파일 작성
-4. `public/bibles/translations.json`에 번역본 정보 추가
-5. 코드 수정 없이 앱 재빌드만으로 반영됨
-
----
-
-## 향후 확장 고려사항 (현재 미구현)
-
-- 구절 공유 기능 (Web Share API)
-- 병렬 번역 보기 (두 번역본 동시 표시)
-- 검색 기능 (전문 검색)
-- 읽기 계획 (독서 플랜 트래킹)
-- 다크 모드
-- 글자 크기 조절
+- **Vite base path**: `vite.config.ts`에서 `base: '/free-bible/'`로 설정됨. 에셋 경로나 라우팅에 영향.
+- **React 19**: `package.json`에는 React 19를 사용 중 (CLAUDE.md 기술스택 표에는 React 18로 표기되어 있으나 실제는 19)
+- **번역본 추가**: 코드 수정 없이 `public/bibles/`에 JSON 파일만 추가하면 됨. 자세한 절차는 README.md 참조.
+- **Service Worker 캐싱**: 성경 JSON 파일은 CacheFirst 전략으로 1년간 캐싱 (`workbox` 설정)

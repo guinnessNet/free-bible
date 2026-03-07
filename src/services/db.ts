@@ -28,17 +28,37 @@ export interface Note {
   updatedAt: Date;
 }
 
+export interface ReadingRecord {
+  id?: number;
+  translationId: string;
+  bookId: string;
+  chapter: number;
+  readAt: Date;
+}
+
 class BibleDB extends Dexie {
   bookmarks!: Table<Bookmark>;
   highlights!: Table<Highlight>;
   notes!: Table<Note>;
 
+  readingRecords!: Table<ReadingRecord>;
+
   constructor() {
     super('BibleDB');
+
+    // v2: 복합 인덱스 추가 + 읽기 기록 테이블
+    this.version(2).stores({
+      bookmarks:      '++id, [translationId+bookId+chapter], [translationId+bookId+chapter+verse]',
+      highlights:     '++id, [translationId+bookId+chapter], [translationId+bookId+chapter+verse]',
+      notes:          '++id, [translationId+bookId+chapter], [translationId+bookId+chapter+verse]',
+      readingRecords: '++id, [translationId+bookId+chapter], translationId',
+    });
+
+    // v1 유지 (마이그레이션 경로)
     this.version(1).stores({
-      bookmarks: '++id, translationId, bookId, chapter, verse',
+      bookmarks:  '++id, translationId, bookId, chapter, verse',
       highlights: '++id, translationId, bookId, chapter, verse',
-      notes: '++id, translationId, bookId, chapter, verse',
+      notes:      '++id, translationId, bookId, chapter, verse',
     });
   }
 }

@@ -2,6 +2,7 @@ import { useRef, useCallback, useState, useEffect } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import { useBibleStore } from '../../store/bibleStore';
 import { useTTS } from '../../hooks/useTTS';
+import { useReadingRecord } from '../../hooks/useReadingRecord';
 import VerseList from './VerseList';
 import BottomToolbar from '../BottomToolbar/BottomToolbar';
 import type { Chapter } from '../../types/bible';
@@ -17,9 +18,13 @@ export default function BibleReader() {
     goNextChapter, goPrevChapter,
     translations, translationId,
     ttsRate,
+    selectedVerses,
   } = useBibleStore();
 
   const lang = translations.find((t) => t.id === translationId)?.language ?? 'ko';
+
+  // 5초 이상 머물면 읽기 기록 자동 저장
+  useReadingRecord(translationId, bookId, chapterIndex + 1);
 
   // 로딩 중에도 이전 내용을 유지해서 스크롤 위치가 무너지지 않도록 함
   const [displayedChapter, setDisplayedChapter] = useState<Chapter | null>(currentChapter);
@@ -43,7 +48,16 @@ export default function BibleReader() {
   }, [isLoading, currentChapter, bookId, chapterIndex]);
 
   const verses = displayedChapter?.verses ?? [];
-  const tts = useTTS(verses, lang, ttsRate);
+  const tts = useTTS(verses, lang, ttsRate, goNextChapter);
+
+  // 선택된 구절이 있으면 해당 구절부터 재생, 없으면 기존 toggle 동작
+  const handleTtsToggle = useCallback(() => {
+    if (!tts.isPlaying && selectedVerses.length > 0) {
+      tts.speakFromVerse(selectedVerses[0]);
+    } else {
+      tts.toggle();
+    }
+  }, [tts, selectedVerses]);
 
   const handlers = useSwipeable({
     onSwipedLeft: () => { tts.stop(); playPageSound(); goNextChapter(); },
@@ -62,6 +76,8 @@ export default function BibleReader() {
     },
     [swipeRef]
   );
+
+  const wrappedTts = { ...tts, toggle: handleTtsToggle };
 
   return (
     <>
@@ -85,7 +101,7 @@ export default function BibleReader() {
         )}
       </div>
 
-      <BottomToolbar tts={tts} onNavigate={playPageSound} />
+      <BottomToolbar tts={wrappedTts} onNavigate={playPageSound} verses={verses} />
     </>
   );
 }

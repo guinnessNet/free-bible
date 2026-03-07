@@ -1,4 +1,6 @@
 import { useBibleStore } from '../../store/bibleStore';
+import { useReadingProgress } from '../../hooks/useReadingProgress';
+import { db } from '../../services/db';
 
 interface Props {
   onClose: () => void;
@@ -23,10 +25,17 @@ const TTS_RATES: { value: number; label: string }[] = [
 export default function SettingsPanel({ onClose, onOpenSaved }: Props) {
   const {
     darkMode, toggleDarkMode,
-    translations, favoriteTranslations, setFavoriteTranslations,
+    translations, translationId, favoriteTranslations, setFavoriteTranslations,
     fontSize, setFontSize,
     ttsRate, setTtsRate,
+    compareTranslationId, setCompareTranslation,
+    currentMeta,
   } = useBibleStore();
+
+  const { totalRead } = useReadingProgress(translationId);
+  const totalChapters = currentMeta
+    ? currentMeta.books.reduce((sum: number, b: { chapters: number }) => sum + b.chapters, 0)
+    : 1189;
 
   const toggleFav = (id: string) => {
     const next = favoriteTranslations.includes(id)
@@ -59,6 +68,37 @@ export default function SettingsPanel({ onClose, onOpenSaved }: Props) {
               <span className="text-sm font-medium text-gray-800 dark:text-gray-200">🔖 북마크 / 형광펜 보기</span>
               <span className="text-gray-400">›</span>
             </button>
+          </section>
+
+          <div className="border-t border-gray-100 dark:border-gray-700 mx-4" />
+
+          {/* 통독 현황 */}
+          <section className="px-4 pt-4 pb-3">
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">통독 현황</h3>
+            <div className="px-4 py-3.5 bg-gray-50 dark:bg-gray-700 rounded-xl">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                  {totalRead} / {totalChapters}장 완료
+                </span>
+                <span className="text-sm font-bold text-blue-600 dark:text-blue-400">
+                  {totalChapters > 0 ? Math.round((totalRead / totalChapters) * 100) : 0}%
+                </span>
+              </div>
+              <div className="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-green-500 rounded-full transition-all"
+                  style={{ width: `${totalChapters > 0 ? (totalRead / totalChapters) * 100 : 0}%` }}
+                />
+              </div>
+              {totalRead > 0 && (
+                <button
+                  onClick={() => db.readingRecords.where('translationId').equals(translationId).delete()}
+                  className="mt-2 text-xs text-gray-400 underline"
+                >
+                  읽기 기록 초기화
+                </button>
+              )}
+            </div>
           </section>
 
           <div className="border-t border-gray-100 dark:border-gray-700 mx-4" />
@@ -136,6 +176,30 @@ export default function SettingsPanel({ onClose, onOpenSaved }: Props) {
                 </button>
               ))}
             </div>
+          </section>
+
+          <div className="border-t border-gray-100 dark:border-gray-700 mx-4" />
+
+          {/* 비교 번역본 */}
+          <section className="px-4 pt-4 pb-3">
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">비교 번역본</h3>
+            <p className="text-xs text-gray-400 mb-3">
+              구절을 더블클릭하면 비교 번역본으로 전환됩니다
+            </p>
+            <select
+              value={compareTranslationId ?? ''}
+              onChange={(e) => setCompareTranslation(e.target.value || null)}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-sm text-gray-800 dark:text-gray-200 appearance-none"
+            >
+              <option value="">사용 안함</option>
+              {translations
+                .filter((t) => t.id !== translationId)
+                .map((t) => (
+                  <option key={t.id} value={t.id}>
+                    {t.name} ({t.id})
+                  </option>
+                ))}
+            </select>
           </section>
 
           <div className="border-t border-gray-100 dark:border-gray-700 mx-4" />

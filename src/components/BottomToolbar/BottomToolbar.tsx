@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useBibleStore } from '../../store/bibleStore';
 import { useBookmarks } from '../../hooks/useBookmarks';
 import { useHighlights, type HighlightColor } from '../../hooks/useHighlights';
 import NoteEditor from '../Notes/NoteEditor';
+import type { Verse } from '../../types/bible';
 
 interface TTS {
   isPlaying: boolean;
@@ -13,6 +14,7 @@ interface TTS {
 interface Props {
   tts: TTS;
   onNavigate: () => void;
+  verses: Verse[];
 }
 
 const COLORS: { key: HighlightColor; cls: string }[] = [
@@ -22,11 +24,12 @@ const COLORS: { key: HighlightColor; cls: string }[] = [
   { key: 'blue',   cls: 'bg-blue-300' },
 ];
 
-export default function BottomToolbar({ tts, onNavigate }: Props) {
+export default function BottomToolbar({ tts, onNavigate, verses }: Props) {
   const {
     translationId, bookId, chapterIndex,
     selectedVerses, clearSelection,
     goNextChapter, goPrevChapter,
+    currentMeta, translations, showToast,
   } = useBibleStore();
   const chapter = chapterIndex + 1;
 
@@ -50,6 +53,34 @@ export default function BottomToolbar({ tts, onNavigate }: Props) {
     setShowColors(false);
     clearSelection();
   };
+
+  const handleShare = useCallback(async () => {
+    if (!hasSelection) return;
+    const selected = verses
+      .filter((v) => selectedVerses.includes(v.verse))
+      .sort((a, b) => a.verse - b.verse);
+    if (selected.length === 0) return;
+
+    const bookName = currentMeta?.books.find((b) => b.id === bookId)?.name ?? bookId;
+    const translationName = translations.find((t) => t.id === translationId)?.name ?? translationId;
+    const text = selected.map((v) => v.text).join('\n');
+    const verseRange = selected.length === 1
+      ? `${selected[0].verse}`
+      : `${selected[0].verse}-${selected[selected.length - 1].verse}`;
+    const shareText = `${text}\n- ${bookName} ${chapter}:${verseRange} (${translationName})`;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({ text: shareText });
+      } else {
+        await navigator.clipboard.writeText(shareText);
+        showToast('클립보드에 복사되었습니다');
+      }
+    } catch {
+      // 사용자가 공유 취소한 경우
+    }
+    clearSelection();
+  }, [hasSelection, verses, selectedVerses, currentMeta, bookId, translationId, translations, chapter, clearSelection, showToast]);
 
   return (
     <>
@@ -119,6 +150,22 @@ export default function BottomToolbar({ tts, onNavigate }: Props) {
         >
           <span className="text-xl">📝</span>
           <span className="text-[10px]">메모</span>
+        </button>
+
+        {/* 공유 */}
+        <button
+          onClick={handleShare}
+          disabled={!hasSelection}
+          className={`flex-1 flex flex-col items-center py-1 ${hasSelection ? 'text-purple-600' : 'text-gray-300'}`}
+        >
+          <span className="text-xl">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 inline">
+              <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+              <polyline points="16 6 12 2 8 6" />
+              <line x1="12" y1="2" x2="12" y2="15" />
+            </svg>
+          </span>
+          <span className="text-[10px]">공유</span>
         </button>
 
         {/* 다음 장 */}

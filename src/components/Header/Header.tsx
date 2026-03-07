@@ -4,6 +4,7 @@ import BookSelector from '../Selectors/BookSelector';
 import TranslationSelector from '../Selectors/TranslationSelector';
 import SettingsPanel from '../Settings/SettingsPanel';
 import BookmarkList from '../BookmarkList/BookmarkList';
+import SearchModal from '../Search/SearchModal';
 
 export default function Header() {
   const { translationId, bookId, chapterIndex, currentMeta, translations } = useBibleStore();
@@ -11,6 +12,7 @@ export default function Header() {
   const [showTranslation, setShowTranslation] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showSaved, setShowSaved] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   const bookMeta = currentMeta?.books.find((b) => b.id === bookId);
   const translationName = translations.find((t) => t.id === translationId)?.name ?? translationId;
@@ -32,6 +34,18 @@ export default function Header() {
           className="text-xs bg-blue-800 dark:bg-gray-700 px-2.5 py-1 rounded-full shrink-0 max-w-28 truncate"
         >
           {translationName}
+        </button>
+
+        {/* 검색 */}
+        <button
+          onClick={() => setShowSearch(true)}
+          className="w-8 h-8 flex items-center justify-center text-white/80 hover:text-white shrink-0"
+          aria-label="검색"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
         </button>
 
         {/* 설정 */}
@@ -56,6 +70,7 @@ export default function Header() {
         />
       )}
       {showSaved      && <BookmarkList onClose={() => setShowSaved(false)} />}
+      {showSearch     && <SearchModal onClose={() => setShowSearch(false)} />}
     </>
   );
 }

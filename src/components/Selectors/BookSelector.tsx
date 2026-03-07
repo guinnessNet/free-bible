@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useBibleStore } from '../../store/bibleStore';
+import { useReadingProgress } from '../../hooks/useReadingProgress';
 import type { BookMeta } from '../../types/bible';
 
 interface Props { onClose: () => void; }
 
 export default function BookSelector({ onClose }: Props) {
   const { translationId, bookId, chapterIndex, currentMeta, setLocation } = useBibleStore();
+  const { isRead } = useReadingProgress(translationId);
 
   const currentBook = currentMeta?.books.find((b) => b.id === bookId);
   const initialTestament = currentBook?.testament ?? 'old';
@@ -105,20 +107,29 @@ export default function BookSelector({ onClose }: Props) {
                   {selectedBook.name}
                 </p>
                 <div className="grid grid-cols-5 gap-1.5">
-                  {chapters.map((idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => handleChapterClick(idx)}
-                      className={[
-                        'py-2.5 rounded-lg text-sm font-medium',
-                        selectedBook.id === bookId && idx === chapterIndex
-                          ? 'bg-blue-700 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200',
-                      ].join(' ')}
-                    >
-                      {idx + 1}
-                    </button>
-                  ))}
+                  {chapters.map((idx) => {
+                    const isCurrent = selectedBook.id === bookId && idx === chapterIndex;
+                    const read = isRead(selectedBook.id, idx + 1);
+                    return (
+                      <button
+                        key={idx}
+                        onClick={() => handleChapterClick(idx)}
+                        className={[
+                          'py-2.5 rounded-lg text-sm font-medium relative',
+                          isCurrent
+                            ? 'bg-blue-700 text-white'
+                            : read
+                            ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200',
+                        ].join(' ')}
+                      >
+                        {idx + 1}
+                        {read && !isCurrent && (
+                          <span className="absolute top-0.5 right-0.5 w-1.5 h-1.5 bg-green-500 rounded-full" />
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
               </>
             ) : (

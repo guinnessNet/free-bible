@@ -24,8 +24,13 @@ interface BibleStore {
   favoriteTranslations: string[]; // 비어있으면 전체 표시
   fontSize: 'sm' | 'base' | 'lg' | 'xl';
   ttsRate: number;
+  compareTranslationId: string | null;
+
+  // 토스트
+  toastMessage: string | null;
 
   // 액션
+  showToast: (message: string) => void;
   init: () => Promise<void>;
   setLocation: (translationId: string, bookId: string, chapterIndex: number) => Promise<void>;
   goNextChapter: () => Promise<void>;
@@ -37,6 +42,7 @@ interface BibleStore {
   setFavoriteTranslations: (ids: string[]) => void;
   setFontSize: (size: 'sm' | 'base' | 'lg' | 'xl') => void;
   setTtsRate: (rate: number) => void;
+  setCompareTranslation: (id: string | null) => void;
 }
 
 export const useBibleStore = create<BibleStore>()(
@@ -54,7 +60,14 @@ export const useBibleStore = create<BibleStore>()(
       darkMode: false,
       favoriteTranslations: [],
       fontSize: 'base',
-      ttsRate: 0.5,
+      ttsRate: 1.0,
+      compareTranslationId: null,
+      toastMessage: null,
+
+      showToast: (message: string) => {
+        set({ toastMessage: message });
+        setTimeout(() => set({ toastMessage: null }), 2000);
+      },
 
       init: async () => {
         const { translationId, bookId, chapterIndex } = get();
@@ -146,6 +159,7 @@ export const useBibleStore = create<BibleStore>()(
       setFavoriteTranslations: (ids) => set({ favoriteTranslations: ids }),
       setFontSize: (size) => set({ fontSize: size }),
       setTtsRate: (rate) => set({ ttsRate: rate }),
+      setCompareTranslation: (id) => set({ compareTranslationId: id }),
     }),
     {
       name: 'bible-settings',
@@ -157,6 +171,7 @@ export const useBibleStore = create<BibleStore>()(
         favoriteTranslations: s.favoriteTranslations,
         fontSize: s.fontSize,
         ttsRate: s.ttsRate,
+        compareTranslationId: s.compareTranslationId,
       }),
     }
   )

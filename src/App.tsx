@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useBibleStore } from './store/bibleStore';
 import Header from './components/Header/Header';
 import BibleReader from './components/BibleReader/BibleReader';
+import Toast from './components/Toast/Toast';
 
 export default function App() {
   const init = useBibleStore((s) => s.init);
@@ -15,6 +16,7 @@ export default function App() {
     <div className={`h-full bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 ${darkMode ? 'dark' : ''}`}>
       <Header />
       <BibleReader />
+      <Toast />
     </div>
   );
 }
