@@ -3,6 +3,15 @@ import { persist } from 'zustand/middleware';
 import type { Translation, TranslationMeta, Chapter } from '../types/bible';
 import { loadTranslations, loadTranslationMeta, loadBook } from '../services/bibleLoader';
 
+export interface HistoryEntry {
+  translationId: string;
+  bookId: string;
+  chapterIndex: number;
+  bookName: string;
+  translationName: string;
+  visitedAt: number; // timestamp
+}
+
 interface BibleStore {
   // 읽기 위치
   translationId: string;
@@ -26,6 +35,9 @@ interface BibleStore {
   ttsRate: number;
   compareTranslationId: string | null;
 
+  // 네비게이션 히스토리
+  navigationHistory: HistoryEntry[];
+
   // 토스트
   toastMessage: string | null;
 
@@ -43,6 +55,7 @@ interface BibleStore {
   setFontSize: (size: 'sm' | 'base' | 'lg' | 'xl') => void;
   setTtsRate: (rate: number) => void;
   setCompareTranslation: (id: string | null) => void;
+  removeHistoryEntry: (index: number) => void;
 }
 
 export const useBibleStore = create<BibleStore>()(
@@ -62,6 +75,7 @@ export const useBibleStore = create<BibleStore>()(
       fontSize: 'base',
       ttsRate: 1.0,
       compareTranslationId: null,
+      navigationHistory: [],
       toastMessage: null,
 
       showToast: (message: string) => {
@@ -89,6 +103,33 @@ export const useBibleStore = create<BibleStore>()(
       },
 
       setLocation: async (translationId, bookId, chapterIndex) => {
+        const prev = get();
+        // 이전 위치를 히스토리에 추가 (같은 위치가 아닐 때만)
+        if (
+          prev.currentMeta &&
+          (prev.translationId !== translationId ||
+            prev.bookId !== bookId ||
+            prev.chapterIndex !== chapterIndex)
+        ) {
+          const prevBookMeta = prev.currentMeta.books.find((b) => b.id === prev.bookId);
+          const prevTransName = prev.translations.find((t) => t.id === prev.translationId)?.name ?? prev.translationId;
+          if (prevBookMeta) {
+            const entry: HistoryEntry = {
+              translationId: prev.translationId,
+              bookId: prev.bookId,
+              chapterIndex: prev.chapterIndex,
+              bookName: prevBookMeta.name,
+              translationName: prevTransName,
+              visitedAt: Date.now(),
+            };
+            // 같은 위치가 이미 히스토리에 있으면 제거 후 맨 앞에 추가
+            const filtered = prev.navigationHistory.filter(
+              (h) => !(h.translationId === entry.translationId && h.bookId === entry.bookId && h.chapterIndex === entry.chapterIndex)
+            );
+            set({ navigationHistory: [entry, ...filtered].slice(0, 10) });
+          }
+        }
+
         set({ isLoading: true, selectedVerses: [], activeToolMode: 'none' });
         try {
           const [meta, bookData] = await Promise.all([
@@ -160,6 +201,10 @@ export const useBibleStore = create<BibleStore>()(
       setFontSize: (size) => set({ fontSize: size }),
       setTtsRate: (rate) => set({ ttsRate: rate }),
       setCompareTranslation: (id) => set({ compareTranslationId: id }),
+      removeHistoryEntry: (index) => {
+        const { navigationHistory } = get();
+        set({ navigationHistory: navigationHistory.filter((_, i) => i !== index) });
+      },
     }),
     {
       name: 'bible-settings',
@@ -172,6 +217,7 @@ export const useBibleStore = create<BibleStore>()(
         fontSize: s.fontSize,
         ttsRate: s.ttsRate,
         compareTranslationId: s.compareTranslationId,
+        navigationHistory: s.navigationHistory,
       }),
     }
   )

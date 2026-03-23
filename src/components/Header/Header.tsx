@@ -5,6 +5,7 @@ import TranslationSelector from '../Selectors/TranslationSelector';
 import SettingsPanel from '../Settings/SettingsPanel';
 import HighlightList from '../HighlightList/HighlightList';
 import SearchModal from '../Search/SearchModal';
+import HistoryPanel from '../History/HistoryPanel';
 
 export default function Header() {
   const { translationId, bookId, chapterIndex, currentMeta, translations } = useBibleStore();
@@ -13,6 +14,7 @@ export default function Header() {
   const [showSettings, setShowSettings] = useState(false);
   const [showSaved, setShowSaved] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
 
   const bookMeta = currentMeta?.books.find((b) => b.id === bookId);
   const translationName = translations.find((t) => t.id === translationId)?.name ?? translationId;
@@ -34,6 +36,18 @@ export default function Header() {
           className="text-xs bg-blue-800 dark:bg-gray-700 px-2.5 py-1 rounded-full shrink-0 max-w-28 truncate"
         >
           {translationName}
+        </button>
+
+        {/* 히스토리 */}
+        <button
+          onClick={() => setShowHistory(true)}
+          className="w-8 h-8 flex items-center justify-center text-white/80 hover:text-white shrink-0"
+          aria-label="최근 본 페이지"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
         </button>
 
         {/* 검색 */}
@@ -71,6 +85,7 @@ export default function Header() {
       )}
       {showSaved      && <HighlightList onClose={() => setShowSaved(false)} />}
       {showSearch     && <SearchModal onClose={() => setShowSearch(false)} />}
+      {showHistory    && <HistoryPanel onClose={() => setShowHistory(false)} />}
     </>
   );
 }
