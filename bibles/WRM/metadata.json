@@ -48,7 +48,7 @@
       "name": "사사기",
       "nameEn": "Judges",
       "testament": "old",
-      "chapters": 20
+      "chapters": 21
     },
     {
       "id": "RUT",
@@ -132,7 +132,7 @@
       "name": "시편",
       "nameEn": "Psalms",
       "testament": "old",
-      "chapters": 50
+      "chapters": 150
     },
     {
       "id": "PRO",
@@ -160,14 +160,14 @@
       "name": "이사야",
       "nameEn": "Isaiah",
       "testament": "old",
-      "chapters": 50
+      "chapters": 66
     },
     {
       "id": "JER",
       "name": "예레미야",
       "nameEn": "Jeremiah",
       "testament": "old",
-      "chapters": 50
+      "chapters": 52
     },
     {
       "id": "LAM",
