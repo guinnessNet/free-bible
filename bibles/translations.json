@@ -18,6 +18,12 @@
     "direction": "ltr"
   },
   {
+    "id": "WRM",
+    "name": "우리말성경",
+    "language": "ko",
+    "direction": "ltr"
+  },
+  {
     "id": "EASY",
     "name": "쉬운성경",
     "language": "ko",
@@ -33,12 +39,6 @@
     "id": "LEB",
     "name": "Lexham English Bible",
     "language": "en",
-    "direction": "ltr"
-  },
-  {
-    "id": "WRM",
-    "name": "우리말성경",
-    "language": "ko",
     "direction": "ltr"
   }
 ]
