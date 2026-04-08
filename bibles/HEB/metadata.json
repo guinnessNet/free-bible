@@ -1,0 +1,278 @@
+{
+  "translationId": "HEB",
+  "books": [
+    {
+      "id": "GEN",
+      "name": "창세기",
+      "nameEn": "Genesis",
+      "testament": "old",
+      "chapters": 50
+    },
+    {
+      "id": "EXO",
+      "name": "출애굽기",
+      "nameEn": "Exodus",
+      "testament": "old",
+      "chapters": 40
+    },
+    {
+      "id": "LEV",
+      "name": "레위기",
+      "nameEn": "Leviticus",
+      "testament": "old",
+      "chapters": 27
+    },
+    {
+      "id": "NUM",
+      "name": "민수기",
+      "nameEn": "Numbers",
+      "testament": "old",
+      "chapters": 36
+    },
+    {
+      "id": "DEU",
+      "name": "신명기",
+      "nameEn": "Deuteronomy",
+      "testament": "old",
+      "chapters": 34
+    },
+    {
+      "id": "JOS",
+      "name": "여호수아",
+      "nameEn": "Joshua",
+      "testament": "old",
+      "chapters": 24
+    },
+    {
+      "id": "JDG",
+      "name": "사사기",
+      "nameEn": "Judges",
+      "testament": "old",
+      "chapters": 21
+    },
+    {
+      "id": "RUT",
+      "name": "룻기",
+      "nameEn": "Ruth",
+      "testament": "old",
+      "chapters": 4
+    },
+    {
+      "id": "1SA",
+      "name": "사무엘상",
+      "nameEn": "1 Samuel",
+      "testament": "old",
+      "chapters": 31
+    },
+    {
+      "id": "2SA",
+      "name": "사무엘하",
+      "nameEn": "2 Samuel",
+      "testament": "old",
+      "chapters": 24
+    },
+    {
+      "id": "1KI",
+      "name": "열왕기상",
+      "nameEn": "1 Kings",
+      "testament": "old",
+      "chapters": 22
+    },
+    {
+      "id": "2KI",
+      "name": "열왕기하",
+      "nameEn": "2 Kings",
+      "testament": "old",
+      "chapters": 25
+    },
+    {
+      "id": "1CH",
+      "name": "역대상",
+      "nameEn": "1 Chronicles",
+      "testament": "old",
+      "chapters": 29
+    },
+    {
+      "id": "2CH",
+      "name": "역대하",
+      "nameEn": "2 Chronicles",
+      "testament": "old",
+      "chapters": 36
+    },
+    {
+      "id": "EZR",
+      "name": "에스라",
+      "nameEn": "Ezra",
+      "testament": "old",
+      "chapters": 10
+    },
+    {
+      "id": "NEH",
+      "name": "느헤미야",
+      "nameEn": "Nehemiah",
+      "testament": "old",
+      "chapters": 13
+    },
+    {
+      "id": "EST",
+      "name": "에스더",
+      "nameEn": "Esther",
+      "testament": "old",
+      "chapters": 10
+    },
+    {
+      "id": "JOB",
+      "name": "욥기",
+      "nameEn": "Job",
+      "testament": "old",
+      "chapters": 42
+    },
+    {
+      "id": "PSA",
+      "name": "시편",
+      "nameEn": "Psalms",
+      "testament": "old",
+      "chapters": 150
+    },
+    {
+      "id": "PRO",
+      "name": "잠언",
+      "nameEn": "Proverbs",
+      "testament": "old",
+      "chapters": 31
+    },
+    {
+      "id": "ECC",
+      "name": "전도서",
+      "nameEn": "Ecclesiastes",
+      "testament": "old",
+      "chapters": 12
+    },
+    {
+      "id": "SNG",
+      "name": "아가",
+      "nameEn": "Song of Solomon",
+      "testament": "old",
+      "chapters": 8
+    },
+    {
+      "id": "ISA",
+      "name": "이사야",
+      "nameEn": "Isaiah",
+      "testament": "old",
+      "chapters": 66
+    },
+    {
+      "id": "JER",
+      "name": "예레미야",
+      "nameEn": "Jeremiah",
+      "testament": "old",
+      "chapters": 52
+    },
+    {
+      "id": "LAM",
+      "name": "예레미야애가",
+      "nameEn": "Lamentations",
+      "testament": "old",
+      "chapters": 5
+    },
+    {
+      "id": "EZK",
+      "name": "에스겔",
+      "nameEn": "Ezekiel",
+      "testament": "old",
+      "chapters": 48
+    },
+    {
+      "id": "DAN",
+      "name": "다니엘",
+      "nameEn": "Daniel",
+      "testament": "old",
+      "chapters": 12
+    },
+    {
+      "id": "HOS",
+      "name": "호세아",
+      "nameEn": "Hosea",
+      "testament": "old",
+      "chapters": 14
+    },
+    {
+      "id": "JOL",
+      "name": "요엘",
+      "nameEn": "Joel",
+      "testament": "old",
+      "chapters": 3
+    },
+    {
+      "id": "AMO",
+      "name": "아모스",
+      "nameEn": "Amos",
+      "testament": "old",
+      "chapters": 9
+    },
+    {
+      "id": "OBA",
+      "name": "오바댜",
+      "nameEn": "Obadiah",
+      "testament": "old",
+      "chapters": 1
+    },
+    {
+      "id": "JON",
+      "name": "요나",
+      "nameEn": "Jonah",
+      "testament": "old",
+      "chapters": 4
+    },
+    {
+      "id": "MIC",
+      "name": "미가",
+      "nameEn": "Micah",
+      "testament": "old",
+      "chapters": 7
+    },
+    {
+      "id": "NAH",
+      "name": "나훔",
+      "nameEn": "Nahum",
+      "testament": "old",
+      "chapters": 3
+    },
+    {
+      "id": "HAB",
+      "name": "하박국",
+      "nameEn": "Habakkuk",
+      "testament": "old",
+      "chapters": 3
+    },
+    {
+      "id": "ZEP",
+      "name": "스바냐",
+      "nameEn": "Zephaniah",
+      "testament": "old",
+      "chapters": 3
+    },
+    {
+      "id": "HAG",
+      "name": "학개",
+      "nameEn": "Haggai",
+      "testament": "old",
+      "chapters": 2
+    },
+    {
+      "id": "ZEC",
+      "name": "스가랴",
+      "nameEn": "Zechariah",
+      "testament": "old",
+      "chapters": 14
+    },
+    {
+      "id": "MAL",
+      "name": "말라기",
+      "nameEn": "Malachi",
+      "testament": "old",
+      "chapters": 3
+    }
+  ]
+}

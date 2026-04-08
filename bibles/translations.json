@@ -40,5 +40,35 @@
     "name": "Lexham English Bible",
     "language": "en",
     "direction": "ltr"
+  },
+  {
+    "id": "HEB",
+    "name": "히브리어",
+    "language": "he",
+    "direction": "rtl"
+  },
+  {
+    "id": "GRK",
+    "name": "헬라어",
+    "language": "el",
+    "direction": "ltr"
+  },
+  {
+    "id": "JPN",
+    "name": "日本語口語訳",
+    "language": "ja",
+    "direction": "ltr"
+  },
+  {
+    "id": "CHT",
+    "name": "中文聖經繁體",
+    "language": "zh-TW",
+    "direction": "ltr"
+  },
+  {
+    "id": "CHS",
+    "name": "中文圣经简体",
+    "language": "zh-CN",
+    "direction": "ltr"
   }
 ]

@@ -1,0 +1,194 @@
+{
+  "translationId": "GRK",
+  "books": [
+    {
+      "id": "MAT",
+      "name": "마태복음",
+      "nameEn": "Matthew",
+      "testament": "new",
+      "chapters": 28
+    },
+    {
+      "id": "MRK",
+      "name": "마가복음",
+      "nameEn": "Mark",
+      "testament": "new",
+      "chapters": 16
+    },
+    {
+      "id": "LUK",
+      "name": "누가복음",
+      "nameEn": "Luke",
+      "testament": "new",
+      "chapters": 24
+    },
+    {
+      "id": "JHN",
+      "name": "요한복음",
+      "nameEn": "John",
+      "testament": "new",
+      "chapters": 21
+    },
+    {
+      "id": "ACT",
+      "name": "사도행전",
+      "nameEn": "Acts",
+      "testament": "new",
+      "chapters": 28
+    },
+    {
+      "id": "ROM",
+      "name": "로마서",
+      "nameEn": "Romans",
+      "testament": "new",
+      "chapters": 16
+    },
+    {
+      "id": "1CO",
+      "name": "고린도전서",
+      "nameEn": "1 Corinthians",
+      "testament": "new",
+      "chapters": 16
+    },
+    {
+      "id": "2CO",
+      "name": "고린도후서",
+      "nameEn": "2 Corinthians",
+      "testament": "new",
+      "chapters": 13
+    },
+    {
+      "id": "GAL",
+      "name": "갈라디아서",
+      "nameEn": "Galatians",
+      "testament": "new",
+      "chapters": 6
+    },
+    {
+      "id": "EPH",
+      "name": "에베소서",
+      "nameEn": "Ephesians",
+      "testament": "new",
+      "chapters": 6
+    },
+    {
+      "id": "PHP",
+      "name": "빌립보서",
+      "nameEn": "Philippians",
+      "testament": "new",
+      "chapters": 4
+    },
+    {
+      "id": "COL",
+      "name": "골로새서",
+      "nameEn": "Colossians",
+      "testament": "new",
+      "chapters": 4
+    },
+    {
+      "id": "1TH",
+      "name": "데살로니가전서",
+      "nameEn": "1 Thessalonians",
+      "testament": "new",
+      "chapters": 5
+    },
+    {
+      "id": "2TH",
+      "name": "데살로니가후서",
+      "nameEn": "2 Thessalonians",
+      "testament": "new",
+      "chapters": 3
+    },
+    {
+      "id": "1TI",
+      "name": "디모데전서",
+      "nameEn": "1 Timothy",
+      "testament": "new",
+      "chapters": 6
+    },
+    {
+      "id": "2TI",
+      "name": "디모데후서",
+      "nameEn": "2 Timothy",
+      "testament": "new",
+      "chapters": 4
+    },
+    {
+      "id": "TIT",
+      "name": "디도서",
+      "nameEn": "Titus",
+      "testament": "new",
+      "chapters": 3
+    },
+    {
+      "id": "PHM",
+      "name": "빌레몬서",
+      "nameEn": "Philemon",
+      "testament": "new",
+      "chapters": 1
+    },
+    {
+      "id": "HEB",
+      "name": "히브리서",
+      "nameEn": "Hebrews",
+      "testament": "new",
+      "chapters": 13
+    },
+    {
+      "id": "JAS",
+      "name": "야고보서",
+      "nameEn": "James",
+      "testament": "new",
+      "chapters": 5
+    },
+    {
+      "id": "1PE",
+      "name": "베드로전서",
+      "nameEn": "1 Peter",
+      "testament": "new",
+      "chapters": 5
+    },
+    {
+      "id": "2PE",
+      "name": "베드로후서",
+      "nameEn": "2 Peter",
+      "testament": "new",
+      "chapters": 3
+    },
+    {
+      "id": "1JN",
+      "name": "요한일서",
+      "nameEn": "1 John",
+      "testament": "new",
+      "chapters": 5
+    },
+    {
+      "id": "2JN",
+      "name": "요한이서",
+      "nameEn": "2 John",
+      "testament": "new",
+      "chapters": 1
+    },
+    {
+      "id": "3JN",
+      "name": "요한삼서",
+      "nameEn": "3 John",
+      "testament": "new",
+      "chapters": 1
+    },
+    {
+      "id": "JUD",
+      "name": "유다서",
+      "nameEn": "Jude",
+      "testament": "new",
+      "chapters": 1
+    },
+    {
+      "id": "REV",
+      "name": "요한계시록",
+      "nameEn": "Revelation",
+      "testament": "new",
+      "chapters": 22
+    }
+  ]
+}

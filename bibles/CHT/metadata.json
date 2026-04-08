@@ -1,0 +1,467 @@
+{
+  "translationId": "CHT",
+  "books": [
+    {
+      "id": "GEN",
+      "name": "創 世 記",
+      "nameEn": "Genesis",
+      "testament": "old",
+      "chapters": 50
+    },
+    {
+      "id": "EXO",
+      "name": "出 埃 及 記",
+      "nameEn": "Exodus",
+      "testament": "old",
+      "chapters": 40
+    },
+    {
+      "id": "LEV",
+      "name": "利 未 記",
+      "nameEn": "Leviticus",
+      "testament": "old",
+      "chapters": 27
+    },
+    {
+      "id": "NUM",
+      "name": "民 數 記",
+      "nameEn": "Numbers",
+      "testament": "old",
+      "chapters": 36
+    },
+    {
+      "id": "DEU",
+      "name": "申 命 記",
+      "nameEn": "Deuteronomy",
+      "testament": "old",
+      "chapters": 34
+    },
+    {
+      "id": "JOS",
+      "name": "約 書 亞 記",
+      "nameEn": "Joshua",
+      "testament": "old",
+      "chapters": 24
+    },
+    {
+      "id": "JDG",
+      "name": "士 師 記",
+      "nameEn": "Judges",
+      "testament": "old",
+      "chapters": 21
+    },
+    {
+      "id": "RUT",
+      "name": "路 得 記",
+      "nameEn": "Ruth",
+      "testament": "old",
+      "chapters": 4
+    },
+    {
+      "id": "1SA",
+      "name": "撒 母 耳 記 上",
+      "nameEn": "1 Samuel",
+      "testament": "old",
+      "chapters": 31
+    },
+    {
+      "id": "2SA",
+      "name": "撒 母 耳 記 下",
+      "nameEn": "2 Samuel",
+      "testament": "old",
+      "chapters": 24
+    },
+    {
+      "id": "1KI",
+      "name": "列 王 紀 上",
+      "nameEn": "1 Kings",
+      "testament": "old",
+      "chapters": 22
+    },
+    {
+      "id": "2KI",
+      "name": "列 王 紀 下",
+      "nameEn": "2 Kings",
+      "testament": "old",
+      "chapters": 25
+    },
+    {
+      "id": "1CH",
+      "name": "歷 代 志 上",
+      "nameEn": "1 Chronicles",
+      "testament": "old",
+      "chapters": 29
+    },
+    {
+      "id": "2CH",
+      "name": "歷 代 志 下",
+      "nameEn": "2 Chronicles",
+      "testament": "old",
+      "chapters": 36
+    },
+    {
+      "id": "EZR",
+      "name": "以 斯 拉 記",
+      "nameEn": "Ezra",
+      "testament": "old",
+      "chapters": 10
+    },
+    {
+      "id": "NEH",
+      "name": "尼 希 米 記",
+      "nameEn": "Nehemiah",
+      "testament": "old",
+      "chapters": 13
+    },
+    {
+      "id": "EST",
+      "name": "以 斯 帖 記",
+      "nameEn": "Esther",
+      "testament": "old",
+      "chapters": 10
+    },
+    {
+      "id": "JOB",
+      "name": "約 伯 記",
+      "nameEn": "Job",
+      "testament": "old",
+      "chapters": 42
+    },
+    {
+      "id": "PSA",
+      "name": "詩 篇",
+      "nameEn": "Psalms",
+      "testament": "old",
+      "chapters": 150
+    },
+    {
+      "id": "PRO",
+      "name": "箴 言",
+      "nameEn": "Proverbs",
+      "testament": "old",
+      "chapters": 31
+    },
+    {
+      "id": "ECC",
+      "name": "傳 道 書",
+      "nameEn": "Ecclesiastes",
+      "testament": "old",
+      "chapters": 12
+    },
+    {
+      "id": "SNG",
+      "name": "雅 歌",
+      "nameEn": "Song of Solomon",
+      "testament": "old",
+      "chapters": 8
+    },
+    {
+      "id": "ISA",
+      "name": "以 賽 亞 書",
+      "nameEn": "Isaiah",
+      "testament": "old",
+      "chapters": 66
+    },
+    {
+      "id": "JER",
+      "name": "耶 利 米 書",
+      "nameEn": "Jeremiah",
+      "testament": "old",
+      "chapters": 52
+    },
+    {
+      "id": "LAM",
+      "name": "耶 利 米 哀 歌",
+      "nameEn": "Lamentations",
+      "testament": "old",
+      "chapters": 5
+    },
+    {
+      "id": "EZK",
+      "name": "以 西 結 書",
+      "nameEn": "Ezekiel",
+      "testament": "old",
+      "chapters": 48
+    },
+    {
+      "id": "DAN",
+      "name": "但 以 理 書",
+      "nameEn": "Daniel",
+      "testament": "old",
+      "chapters": 12
+    },
+    {
+      "id": "HOS",
+      "name": "何 西 阿 書",
+      "nameEn": "Hosea",
+      "testament": "old",
+      "chapters": 14
+    },
+    {
+      "id": "JOL",
+      "name": "約 珥 書",
+      "nameEn": "Joel",
+      "testament": "old",
+      "chapters": 3
+    },
+    {
+      "id": "AMO",
+      "name": "阿 摩 司 書",
+      "nameEn": "Amos",
+      "testament": "old",
+      "chapters": 9
+    },
+    {
+      "id": "OBA",
+      "name": "俄 巴 底 亞 書",
+      "nameEn": "Obadiah",
+      "testament": "old",
+      "chapters": 1
+    },
+    {
+      "id": "JON",
+      "name": "約 拿 書",
+      "nameEn": "Jonah",
+      "testament": "old",
+      "chapters": 4
+    },
+    {
+      "id": "MIC",
+      "name": "彌 迦 書",
+      "nameEn": "Micah",
+      "testament": "old",
+      "chapters": 7
+    },
+    {
+      "id": "NAH",
+      "name": "那 鴻 書",
+      "nameEn": "Nahum",
+      "testament": "old",
+      "chapters": 3
+    },
+    {
+      "id": "HAB",
+      "name": "哈 巴 谷 書",
+      "nameEn": "Habakkuk",
+      "testament": "old",
+      "chapters": 3
+    },
+    {
+      "id": "ZEP",
+      "name": "西 番 雅 書",
+      "nameEn": "Zephaniah",
+      "testament": "old",
+      "chapters": 3
+    },
+    {
+      "id": "HAG",
+      "name": "哈 該 書",
+      "nameEn": "Haggai",
+      "testament": "old",
+      "chapters": 2
+    },
+    {
+      "id": "ZEC",
+      "name": "撒 迦 利 亞",
+      "nameEn": "Zechariah",
+      "testament": "old",
+      "chapters": 14
+    },
+    {
+      "id": "MAL",
+      "name": "瑪 拉 基 書",
+      "nameEn": "Malachi",
+      "testament": "old",
+      "chapters": 4
+    },
+    {
+      "id": "MAT",
+      "name": "馬 太 福 音",
+      "nameEn": "Matthew",
+      "testament": "new",
+      "chapters": 28
+    },
+    {
+      "id": "MRK",
+      "name": "馬 可 福 音",
+      "nameEn": "Mark",
+      "testament": "new",
+      "chapters": 16
+    },
+    {
+      "id": "LUK",
+      "name": "路 加 福 音",
+      "nameEn": "Luke",
+      "testament": "new",
+      "chapters": 24
+    },
+    {
+      "id": "JHN",
+      "name": "約 翰 福 音",
+      "nameEn": "John",
+      "testament": "new",
+      "chapters": 21
+    },
+    {
+      "id": "ACT",
+      "name": "使 徒 行 傳",
+      "nameEn": "Acts",
+      "testament": "new",
+      "chapters": 28
+    },
+    {
+      "id": "ROM",
+      "name": "羅 馬 書",
+      "nameEn": "Romans",
+      "testament": "new",
+      "chapters": 16
+    },
+    {
+      "id": "1CO",
+      "name": "歌 林 多 前 書",
+      "nameEn": "1 Corinthians",
+      "testament": "new",
+      "chapters": 16
+    },
+    {
+      "id": "2CO",
+      "name": "歌 林 多 後 書",
+      "nameEn": "2 Corinthians",
+      "testament": "new",
+      "chapters": 13
+    },
+    {
+      "id": "GAL",
+      "name": "加 拉 太 書",
+      "nameEn": "Galatians",
+      "testament": "new",
+      "chapters": 6
+    },
+    {
+      "id": "EPH",
+      "name": "以 弗 所 書",
+      "nameEn": "Ephesians",
+      "testament": "new",
+      "chapters": 6
+    },
+    {
+      "id": "PHP",
+      "name": "腓 立 比 書",
+      "nameEn": "Philippians",
+      "testament": "new",
+      "chapters": 4
+    },
+    {
+      "id": "COL",
+      "name": "歌 羅 西 書",
+      "nameEn": "Colossians",
+      "testament": "new",
+      "chapters": 4
+    },
+    {
+      "id": "1TH",
+      "name": "帖 撒 羅 尼 迦 前 書",
+      "nameEn": "1 Thessalonians",
+      "testament": "new",
+      "chapters": 5
+    },
+    {
+      "id": "2TH",
+      "name": "帖 撒 羅 尼 迦 後 書",
+      "nameEn": "2 Thessalonians",
+      "testament": "new",
+      "chapters": 3
+    },
+    {
+      "id": "1TI",
+      "name": "提 摩 太 前 書",
+      "nameEn": "1 Timothy",
+      "testament": "new",
+      "chapters": 6
+    },
+    {
+      "id": "2TI",
+      "name": "提 摩 太 後 書",
+      "nameEn": "2 Timothy",
+      "testament": "new",
+      "chapters": 4
+    },
+    {
+      "id": "TIT",
+      "name": "提 多 書",
+      "nameEn": "Titus",
+      "testament": "new",
+      "chapters": 3
+    },
+    {
+      "id": "PHM",
+      "name": "腓 利 門 書",
+      "nameEn": "Philemon",
+      "testament": "new",
+      "chapters": 1
+    },
+    {
+      "id": "HEB",
+      "name": "希 伯 來 書",
+      "nameEn": "Hebrews",
+      "testament": "new",
+      "chapters": 13
+    },
+    {
+      "id": "JAS",
+      "name": "雅 各 書",
+      "nameEn": "James",
+      "testament": "new",
+      "chapters": 5
+    },
+    {
+      "id": "1PE",
+      "name": "彼 得 前 書",
+      "nameEn": "1 Peter",
+      "testament": "new",
+      "chapters": 5
+    },
+    {
+      "id": "2PE",
+      "name": "彼 得 後 書",
+      "nameEn": "2 Peter",
+      "testament": "new",
+      "chapters": 3
+    },
+    {
+      "id": "1JN",
+      "name": "約 翰 一 書",
+      "nameEn": "1 John",
+      "testament": "new",
+      "chapters": 5
+    },
+    {
+      "id": "2JN",
+      "name": "約 翰 二 書",
+      "nameEn": "2 John",
+      "testament": "new",
+      "chapters": 1
+    },
+    {
+      "id": "3JN",
+      "name": "約 翰 三 書",
+      "nameEn": "3 John",
+      "testament": "new",
+      "chapters": 1
+    },
+    {
+      "id": "JUD",
+      "name": "猶 大 書",
+      "nameEn": "Jude",
+      "testament": "new",
+      "chapters": 1
+    },
+    {
+      "id": "REV",
+      "name": "启 示 录",
+      "nameEn": "Revelation",
+      "testament": "new",
+      "chapters": 22
+    }
+  ]
+}
