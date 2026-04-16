@@ -1,14 +1,57 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>bible-app</title>
-    <script type="module" crossorigin src="/free-bible/assets/index-2a_DnNPT.js"></script>
-    <link rel="stylesheet" crossorigin href="/free-bible/assets/index-DdWpD_8q.css">
+    <title>매일성경 - 무료 온라인 성경</title>
+    <meta name="description" content="누구나 무료로 읽는 성경. 다양한 번역본, 형광펜, TTS 읽어주기 지원." />
+    <meta name="theme-color" content="#1e3a5f" />
+
+    <!-- Open Graph (카카오톡, 페이스북 등) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="매일성경 - 무료 온라인 성경" />
+    <meta property="og:description" content="누구나 무료로 읽는 성경. 다양한 번역본, 형광펜, TTS 읽어주기 지원." />
+    <meta property="og:image" content="https://dailybible.kr/og-image.png" />
+    <meta property="og:url" content="https://dailybible.kr" />
+    <meta property="og:site_name" content="매일성경" />
+    <meta property="og:locale" content="ko_KR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="매일성경 - 무료 온라인 성경" />
+    <meta name="twitter:description" content="누구나 무료로 읽는 성경. 다양한 번역본, 형광펜, TTS 읽어주기 지원." />
+    <meta name="twitter:image" content="https://dailybible.kr/og-image.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/free-bible/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/free-bible/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/free-bible/apple-touch-icon.png" />
+
+    <!-- 에러 캐치: 앱이 로드 안 되면 에러 메시지 표시 -->
+    <script>
+      window.onerror = function(msg, src, line, col, err) {
+        var d = document.getElementById('debug-error');
+        if (d) d.innerHTML += '<p style="color:red;font-size:12px;margin:4px 0">' + msg + ' (' + src + ':' + line + ')</p>';
+      };
+      setTimeout(function() {
+        var root = document.getElementById('root');
+        if (root && !root.innerHTML.trim()) {
+          var d = document.getElementById('debug-error');
+          if (d) d.style.display = 'block';
+          if (d) d.innerHTML += '<p style="font-size:14px;margin:8px">앱 로드 실패. UA: ' + navigator.userAgent + '</p>';
+        }
+      }, 5000);
+    </script>
+    <script type="module" crossorigin src="/free-bible/assets/index-t_mJx3-N.js"></script>
+    <link rel="stylesheet" crossorigin href="/free-bible/assets/index-C5ntVHkJ.css">
+    <script type="module">import'data:text/javascript,if(!import.meta.resolve)throw Error("import.meta.resolve not supported")';import.meta.url;import("_").catch(()=>1);(async function*(){})().next();window.__vite_is_modern_browser=true</script>
+    <script type="module">!function(){if(window.__vite_is_modern_browser)return;console.warn("vite: loading legacy chunks, syntax error above and the same error below should be ignored");var e=document.getElementById("vite-legacy-polyfill"),n=document.createElement("script");n.src=e.src,n.onload=function(){System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))},document.body.appendChild(n)}();</script>
   <link rel="manifest" href="/free-bible/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/free-bible/registerSW.js"></script></head>
   <body>
     <div id="root"></div>
+    <div id="debug-error" style="display:none;padding:16px;background:#fff3cd;position:fixed;bottom:0;left:0;right:0;z-index:9999;max-height:40vh;overflow:auto"></div>
+    <script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
+    <script nomodule crossorigin id="vite-legacy-polyfill" src="/free-bible/assets/polyfills-legacy-C_lb7ARS.js"></script>
+    <script nomodule crossorigin id="vite-legacy-entry" data-src="/free-bible/assets/index-legacy-DXFR5dcT.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
   </body>
 </html>
